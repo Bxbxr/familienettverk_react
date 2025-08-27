@@ -1,0 +1,35 @@
+{
+  "Navbar": {
+    "home": "الرئيسية",
+    "activities": "الأنشطة",
+    "gallery": "المعرض",
+    "about": "من نحن",
+    "volunteer": "التطوع",
+    "contact": "اتصل بنا"
+  },
+  "HeroSection": {
+    "title": "مرحباً بكم في شبكة العائلة",
+    "subtitle": "نبني مجتمعًا أقوى، معًا.",
+    "button": "شاهد أنشطتنا"
+  },
+  "HomePage": {
+    "whoWeAreTitle": "من نحن",
+    "whoWeAreText": "شبكة العائلة هي منظمة شبابية مكرسة لخلق بيئة إيجابية وشاملة للجميع.",
+    "whoWeAreButton": "اعرف المزيد عنا",
+    "latestActivitiesTitle": "الأنشطة القادمة"
+  },
+  "...": "...",
+  "HomePage": {
+    "whoWeAreTitle": "من نحن",
+    "whoWeAreText": "...",
+    "whoWeAreButton": "...",
+    "latestActivitiesTitle": "الأنشطة القادمة"
+  },
+  "Dashboard": {
+    "title": "لوحة التحكم",
+    "totalVolunteers": "إجمالي المتطوعين",
+    "totalActivities": "إجمالي الأنشطة",
+    "totalVisitors": "إجمالي الزوار",
+    "analyticsNote": "سيتم تفعيل التحليلات عند النشر."
+  }
+}

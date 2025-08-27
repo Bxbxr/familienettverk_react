@@ -1,0 +1,35 @@
+{
+  "Navbar": {
+    "home": "Hjem",
+    "activities": "Aktiviteter",
+    "gallery": "Galleri",
+    "about": "Om Oss",
+    "volunteer": "Frivillige",
+    "contact": "Kontakt"
+  },
+  "HeroSection": {
+    "title": "Velkommen til Familienettverk",
+    "subtitle": "Bygger et sterkere samfunn, sammen.",
+    "button": "Se Våre Aktiviteter"
+  },
+  "HomePage": {
+    "whoWeAreTitle": "Hvem vi er",
+    "whoWeAreText": "Familienettverk er en ungdomsorganisasjon dedikert til å skape et positivt og inkluderende miljø for alle.",
+    "whoWeAreButton": "Lær mer om oss",
+    "latestActivitiesTitle": "Kommende Aktiviteter"
+  },
+  "...": "...",
+  "HomePage": {
+    "whoWeAreTitle": "Hvem vi er",
+    "whoWeAreText": "...",
+    "whoWeAreButton": "...",
+    "latestActivitiesTitle": "Kommende Aktiviteter"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "totalVolunteers": "Totalt Frivillige",
+    "totalActivities": "Totalt Aktiviteter",
+    "totalVisitors": "Totalt Besøkende",
+    "analyticsNote": "Analyse aktivert ved distribusjon."
+  }
+}

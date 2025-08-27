@@ -101,7 +101,7 @@ export default async function DashboardPage() {
                 </div>
                 <div className="flex-grow-1 ms-3">
                   <h5 className="card-title text-muted mb-1">Total Visitors</h5>
-                  <p className="h2 fw-bold mb-0">361</p>
+                  <p className="h2 fw-bold mb-0">N/A</p>
                 </div>
               </div>
             </div>
