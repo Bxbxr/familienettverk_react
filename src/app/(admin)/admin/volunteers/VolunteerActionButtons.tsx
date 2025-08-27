@@ -36,7 +36,7 @@ export default function VolunteerActionButtons({
       ...volunteers.map((row) =>
         headers
           .map((header) =>
-            JSON.stringify((row as any)[header], (key, value) =>
+            JSON.stringify((row as never)[header], (key, value) =>
               value === null ? "" : value
             )
           )
