@@ -18,11 +18,7 @@ async function getActivity(id: string): Promise<Activity | null> {
   return data;
 }
 
-export default async function ActivityDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function ActivityDetailPage({ params }: any) {
   const activity = await getActivity(params.id);
 
   // If no activity is found for the given ID, show a 404 page
