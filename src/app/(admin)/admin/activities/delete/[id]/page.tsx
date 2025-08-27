@@ -1,4 +1,3 @@
-// src/app/(admin)/admin/activities/delete/[id]/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -7,8 +6,10 @@ import { useRouter, useParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { Activity } from "@/lib/types";
 
+type ActivityMinimal = Pick<Activity, "id" | "title">;
+
 export default function DeleteActivityPage() {
-  const [activity, setActivity] = useState<Activity | null>(null);
+  const [activity, setActivity] = useState<ActivityMinimal | null>(null);
   const [loading, setLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -22,14 +23,14 @@ export default function DeleteActivityPage() {
     const fetchActivity = async () => {
       const { data, error } = await supabase
         .from("activities")
-        .select("id, title") // We only need the title for the confirmation message
+        .select("id, title") // only what we need
         .eq("id", id)
         .single();
 
       if (error || !data) {
         notFound();
       } else {
-        setActivity(data);
+        setActivity(data as ActivityMinimal);
       }
       setLoading(false);
     };
@@ -69,7 +70,7 @@ export default function DeleteActivityPage() {
           {activity ? (
             <p className="lead">
               Are you sure you want to permanently delete the activity:{" "}
-              <strong>"{activity.title}"</strong>?
+              <strong>&quot;{activity.title}&quot;</strong>
             </p>
           ) : (
             <p className="lead">
