@@ -4,10 +4,6 @@ import type { Activity } from "@/lib/types";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-interface ActivityDetailPageProps {
-  params: { id: string };
-}
-
 async function getActivity(id: string): Promise<Activity | null> {
   const { data, error } = await supabase
     .from("activities")
@@ -24,7 +20,9 @@ async function getActivity(id: string): Promise<Activity | null> {
 
 export default async function ActivityDetailPage({
   params,
-}: ActivityDetailPageProps) {
+}: {
+  params: { id: string };
+}) {
   const activity = await getActivity(params.id);
 
   // If no activity is found for the given ID, show a 404 page
