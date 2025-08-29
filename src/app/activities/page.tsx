@@ -3,15 +3,15 @@ import { supabase } from "@/lib/supabaseClient";
 import type { Activity } from "@/lib/types";
 import ActivityCard from "@/components/activities/ActivityCard";
 
-// This function fetches ALL activities from the database
+// Denne funksjonen henter ALLE aktiviteter fra databasen
 async function getAllActivities(): Promise<Activity[]> {
   const { data, error } = await supabase
     .from("activities")
     .select("*")
-    .order("date", { ascending: false }); // Sort by date, newest/upcoming first
+    .order("date", { ascending: false }); // Sorter etter dato, nyeste/fremtidige først
 
   if (error) {
-    console.error("Error fetching all activities:", error);
+    console.error("Feil ved henting av aktiviteter:", error);
     return [];
   }
 
@@ -25,7 +25,9 @@ export default async function ActivitiesPage() {
     <div className="container py-5">
       <div className="text-center mb-5">
         <h1 className="display-4">Alle Aktiviteter</h1>
-        <p className="lead">Browse our upcoming and past events.</p>
+        <p className="lead">
+          Utforsk våre kommende og tidligere arrangementer.
+        </p>
       </div>
 
       <div className="row">
@@ -35,7 +37,7 @@ export default async function ActivitiesPage() {
           ))
         ) : (
           <div className="col text-center">
-            <p>There are no activities to display at the moment.</p>
+            <p>Det er ingen aktiviteter å vise for øyeblikket.</p>
           </div>
         )}
       </div>

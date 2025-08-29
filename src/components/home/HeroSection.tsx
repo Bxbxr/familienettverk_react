@@ -61,11 +61,11 @@ export default function HeroSection() {
         <h1>Velkommen til Familienettverk</h1>
 
         {/* The p tag will be styled by your .hero-content .lead CSS rule */}
-        <p className="lead">Building a stronger community, together.</p>
+        <p className="lead">Vi bygger et sterkere fellesskap – sammen.</p>
 
         {/* The Link will be styled by your .hero-content .btn CSS rule */}
         <Link href="/activities" className="btn btn-primary">
-          See Our Activities
+          Se Våre Aktiviteter
         </Link>
       </div>
     </div>

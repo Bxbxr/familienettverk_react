@@ -8,11 +8,11 @@ async function getActivity(id: string): Promise<Activity | null> {
   const { data, error } = await supabase
     .from("activities")
     .select("*")
-    .eq("id", id) // Get the one row where the 'id' column matches the id from the URL
-    .single(); // We expect only one result
+    .eq("id", id) // Hent raden der 'id' kolonnen matcher id-en fra URL
+    .single(); // Forventer kun ett resultat
 
   if (error) {
-    console.error("Error fetching activity:", error);
+    console.error("Feil ved henting av aktivitet:", error);
     return null;
   }
   return data;
@@ -21,14 +21,14 @@ async function getActivity(id: string): Promise<Activity | null> {
 export default async function ActivityDetailPage({ params }: any) {
   const activity = await getActivity(params.id);
 
-  // If no activity is found for the given ID, show a 404 page
+  // Hvis ingen aktivitet finnes for gitt ID, vis 404-side
   if (!activity) {
     notFound();
   }
 
   const activityDate = new Date(activity.date);
   const isPast = activityDate < new Date();
-  const formattedDate = activityDate.toLocaleDateString("en-GB", {
+  const formattedDate = activityDate.toLocaleDateString("no-NO", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -44,7 +44,7 @@ export default async function ActivityDetailPage({ params }: any) {
           <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item">
-                <Link href="/activities">Activities</Link>
+                <Link href="/activities">Aktiviteter</Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
                 {activity.title}
@@ -58,7 +58,7 @@ export default async function ActivityDetailPage({ params }: any) {
             <span
               className={`badge me-3 ${isPast ? "bg-danger" : "bg-success"}`}
             >
-              {isPast ? "Ended" : "Upcoming"}
+              {isPast ? "Avsluttet" : "Kommende"}
             </span>
             <span className="text-muted">{formattedDate}</span>
           </div>
@@ -80,7 +80,7 @@ export default async function ActivityDetailPage({ params }: any) {
                 className="btn btn-primary btn-lg px-5"
                 target="_blank"
               >
-                Register Now
+                Registrer Nå
               </Link>
             </div>
           )}

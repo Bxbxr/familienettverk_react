@@ -1,5 +1,5 @@
 // src/app/volunteers/page.tsx
-"use client"; // This must be a Client Component to handle form state and submission
+"use client"; // Dette må være en klientkomponent for å håndtere skjema og innsending
 
 import { useState, FormEvent } from "react";
 import { supabase } from "@/lib/supabaseClient";
@@ -29,9 +29,9 @@ export default function VolunteersPage() {
     const { error } = await supabase.from("volunteers").insert([volunteerData]);
 
     if (error) {
-      console.error("Error submitting volunteer form:", error);
+      console.error("Feil ved innsending av skjema:", error);
       setErrorMessage(
-        "There was an error submitting your application. Please try again."
+        "Det oppstod en feil ved innsending av søknaden. Vennligst prøv igjen."
       );
       setFormState("error");
     } else {
@@ -43,10 +43,10 @@ export default function VolunteersPage() {
     return (
       <div className="container py-5 text-center">
         <div className="alert alert-success" role="alert">
-          <h4 className="alert-heading">Thank You!</h4>
+          <h4 className="alert-heading">Tusen takk!</h4>
           <p>
-            Your volunteer application has been received. We will get in touch
-            with you shortly.
+            Din søknad om frivillig arbeid er mottatt. Vi tar kontakt med deg
+            snart.
           </p>
         </div>
       </div>
@@ -56,9 +56,9 @@ export default function VolunteersPage() {
   return (
     <div className="container py-5">
       <div className="text-center mb-5">
-        <h1 className="display-4">Become a Volunteer</h1>
+        <h1 className="display-4">Bli Frivillig</h1>
         <p className="lead">
-          Join our team and make a difference in the community.
+          Bli med i teamet vårt og gjør en forskjell i samfunnet.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export default function VolunteersPage() {
             <div className="row g-3">
               <div className="col-md-6">
                 <label htmlFor="fullName" className="form-label">
-                  Full Name
+                  Fullt navn
                 </label>
                 <input
                   type="text"
@@ -83,7 +83,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-6">
                 <label htmlFor="email" className="form-label">
-                  Email Address
+                  E-postadresse
                 </label>
                 <input
                   type="email"
@@ -95,7 +95,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-4">
                 <label htmlFor="age" className="form-label">
-                  Age
+                  Alder
                 </label>
                 <input
                   type="number"
@@ -106,7 +106,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-8">
                 <label htmlFor="phone" className="form-label">
-                  Phone
+                  Telefon
                 </label>
                 <input
                   type="tel"
@@ -118,7 +118,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-12">
                 <label htmlFor="address" className="form-label">
-                  Address
+                  Adresse
                 </label>
                 <input
                   type="text"
@@ -129,37 +129,37 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-6">
                 <label htmlFor="gender" className="form-label">
-                  Gender
+                  Kjønn
                 </label>
                 <select className="form-select" id="gender" name="gender">
-                  <option value="">Choose...</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="">Velg...</option>
+                  <option value="Male">Mann</option>
+                  <option value="Female">Kvinne</option>
+                  <option value="Other">Annet</option>
                 </select>
               </div>
               <div className="col-md-6">
                 <label htmlFor="commitmentDuration" className="form-label">
-                  Commitment Duration
+                  Varighet på engasjement
                 </label>
                 <select
                   className="form-select"
                   id="commitmentDuration"
                   name="commitmentDuration"
                 >
-                  <option value="">Choose...</option>
+                  <option value="">Velg...</option>
                   <option value="Short-term (1-3 months)">
-                    Short-term (1-3 months)
+                    Kort sikt (1-3 måneder)
                   </option>
                   <option value="Long-term (6+ months)">
-                    Long-term (6+ months)
+                    Lang sikt (6+ måneder)
                   </option>
-                  <option value="Event-based">Event-based</option>
+                  <option value="Event-based">Basert på arrangementer</option>
                 </select>
               </div>
               <div className="col-12">
                 <label htmlFor="skills" className="form-label">
-                  Skills (e.g., teaching, sports, arts)
+                  Ferdigheter (f.eks. undervisning, sport, kunst)
                 </label>
                 <textarea
                   className="form-control"
@@ -170,32 +170,32 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-6">
                 <label htmlFor="availability" className="form-label">
-                  Availability
+                  Tilgjengelighet
                 </label>
                 <select
                   className="form-select"
                   id="availability"
                   name="availability"
                 >
-                  <option value="">Choose...</option>
-                  <option value="Weekdays">Weekdays</option>
-                  <option value="Weekends">Weekends</option>
-                  <option value="Flexible">Flexible</option>
+                  <option value="">Velg...</option>
+                  <option value="Weekdays">Hverdager</option>
+                  <option value="Weekends">Helger</option>
+                  <option value="Flexible">Fleksibel</option>
                 </select>
               </div>
               <div className="col-md-6">
                 <label htmlFor="volunteeringStyle" className="form-label">
-                  Volunteering Style
+                  Frivillig stil
                 </label>
                 <select
                   className="form-select"
                   id="volunteeringStyle"
                   name="volunteeringStyle"
                 >
-                  <option value="">Choose...</option>
-                  <option value="In-person">In-person</option>
+                  <option value="">Velg...</option>
+                  <option value="In-person">På stedet</option>
                   <option value="Online">Online</option>
-                  <option value="Both">Both</option>
+                  <option value="Both">Begge</option>
                 </select>
               </div>
             </div>
@@ -207,9 +207,7 @@ export default function VolunteersPage() {
               className="w-100 btn btn-primary btn-lg"
               disabled={formState === "submitting"}
             >
-              {formState === "submitting"
-                ? "Submitting..."
-                : "Submit Application"}
+              {formState === "submitting" ? "Sender..." : "Send søknad"}
             </button>
 
             {formState === "error" && (

@@ -15,7 +15,7 @@ export default function ContactUsPage() {
       <div className="text-center mb-5">
         <h1 className="display-4">Kontakt Oss</h1>
         <p className="lead">
-          We d love to hear from you. Reach out with any questions.
+          Vi vil gjerne høre fra deg. Ta kontakt hvis du har spørsmål.
         </p>
       </div>
 
@@ -23,10 +23,10 @@ export default function ContactUsPage() {
         {/* Column 1: Contact Information */}
         <div className="col-lg-5 mb-4 mb-lg-0">
           <div className="p-4 rounded bg-light h-100">
-            <h3 className="mb-4">Contact Information</h3>
+            <h3 className="mb-4">Kontaktinformasjon</h3>
             <p className="d-flex align-items-center mb-3">
               <FaMapMarkerAlt className="me-3" size={20} />
-              <span>123 Community Lane, Oslo, Norway</span>
+              <span>123 Community Lane, Oslo, Norge</span>
             </p>
             <p className="d-flex align-items-center mb-4">
               <FaEnvelope className="me-3" size={20} />
@@ -35,7 +35,7 @@ export default function ContactUsPage() {
               </a>
             </p>
 
-            <h4 className="mb-3">Follow Us</h4>
+            <h4 className="mb-3">Følg Oss</h4>
             <div className="d-flex">
               <a href="#" className="me-3 fs-3" aria-label="Facebook">
                 <FaFacebook />
@@ -50,11 +50,11 @@ export default function ContactUsPage() {
         {/* Column 2: Contact Form */}
         <div className="col-lg-7">
           <div className="p-4 rounded border">
-            <h3 className="mb-4">Send Us a Message</h3>
+            <h3 className="mb-4">Send Oss en Melding</h3>
             <form action={FORMSPREE_ENDPOINT} method="POST">
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
-                  Full Name
+                  Fullt Navn
                 </label>
                 <input
                   type="text"
@@ -66,7 +66,7 @@ export default function ContactUsPage() {
               </div>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
-                  Email Address
+                  E-postadresse
                 </label>
                 <input
                   type="email"
@@ -78,7 +78,7 @@ export default function ContactUsPage() {
               </div>
               <div className="mb-3">
                 <label htmlFor="message" className="form-label">
-                  Message
+                  Melding
                 </label>
                 <textarea
                   className="form-control"
@@ -89,7 +89,7 @@ export default function ContactUsPage() {
                 ></textarea>
               </div>
               <button type="submit" className="btn btn-primary">
-                Send Message
+                Send Melding
               </button>
             </form>
           </div>

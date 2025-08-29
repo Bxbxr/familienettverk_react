@@ -42,10 +42,12 @@ export default function AboutUsPage() {
                   Skape et trygt og inkluderende miljø
                 </h2>
                 <p className="lead text-muted mb-4">
-                  Å skape et trygt, inkluderende og styrkende miljø hvor unge
-                  kan knytte kontakter, lære og vokse. Vi streber etter å tilby
-                  meningsfulle aktiviteter som fremmer personlig utvikling,
-                  samfunnsengasjement og varige vennskap.
+                  Et trygt og inkluderende miljø for alle Vi jobber for å skape
+                  et trygt, inkluderende og inspirerende miljø hvor kvinner,
+                  familier og ungdom kan bygge relasjoner, lære og vokse.
+                  Gjennom våre aktiviteter og møter har vi som mål å fremme
+                  personlig utvikling, samfunnsengasjement, bevaring av
+                  tradisjoner og varige vennskap.
                 </p>
                 <div className="feature-list">
                   <div className="feature-item d-flex align-items-center mb-3">

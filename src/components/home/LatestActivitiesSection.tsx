@@ -9,12 +9,12 @@ async function getLatestActivities(): Promise<Activity[]> {
   const { data, error } = await supabase
     .from("activities")
     .select("*")
-    .gte("date", today) // gte = Greater than or equal to today
-    .order("date", { ascending: true }) // Show the soonest activities first
-    .limit(3); // Only get the next 3
+    .gte("date", today) // gte = større enn eller lik i dag
+    .order("date", { ascending: true }) // Vis de tidligste aktivitetene først
+    .limit(3); // Hent bare de neste 3
 
   if (error) {
-    console.error("Error fetching activities:", error);
+    console.error("Feil ved henting av aktiviteter:", error);
     return [];
   }
 
@@ -27,7 +27,7 @@ export default async function LatestActivitiesSection() {
   return (
     <section className="py-5 bg-light">
       <div className="container">
-        <h2 className="text-center mb-5">Upcoming Activities</h2>
+        <h2 className="text-center mb-5">Kommende Aktiviteter</h2>
         <div className="row">
           {activities.length > 0 ? (
             activities.map((activity) => (
@@ -36,8 +36,8 @@ export default async function LatestActivitiesSection() {
           ) : (
             <div className="col text-center">
               <p>
-                No upcoming activities scheduled at the moment. Please check
-                back soon!
+                Ingen kommende aktiviteter er planlagt for øyeblikket. Vennligst
+                sjekk igjen snart!
               </p>
             </div>
           )}
