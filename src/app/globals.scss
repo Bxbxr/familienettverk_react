@@ -433,11 +433,11 @@ body.rtl-active .nav-link::after {
   }
 }
 
-/* Responsive Adjustments - Updated for much shorter mobile height */
+/* Responsive Adjustments - Updated for shorter mobile height */
 @media (max-width: 768px) {
   .hero-section {
-    height: 35vh; /* Further reduced from 45vh to 35vh */
-    min-height: 250px; /* Further reduced from 300px to 250px */
+    height: 45vh; /* Reduced from 60vh to 45vh */
+    min-height: 300px; /* Reduced from 400px to 300px */
     border-radius: 12px;
     margin: 1.5rem auto;
     width: 90%;
@@ -455,8 +455,8 @@ body.rtl-active .nav-link::after {
 
 @media (max-width: 480px) {
   .hero-section {
-    height: 30vh; /* Further reduced from 40vh to 30vh */
-    min-height: 220px; /* Further reduced from 280px to 220px */
+    height: 40vh; /* Reduced from 45vh to 40vh */
+    min-height: 280px; /* Reduced from 300px to 280px */
     width: 85%;
     max-width: 400px;
     margin: 1rem auto;
@@ -479,8 +479,8 @@ body.rtl-active .nav-link::after {
 /* For very small screens */
 @media (max-width: 360px) {
   .hero-section {
-    height: 25vh; /* Further reduced from 35vh to 25vh */
-    min-height: 200px; /* Further reduced from 250px to 200px */
+    height: 35vh; /* Reduced from 40vh to 35vh */
+    min-height: 250px; /* Reduced from 280px to 250px */
     width: 80%;
     max-width: 320px;
     margin: 0.5rem auto;
