@@ -1,3 +1,4 @@
+// src/app/(admin)/admin/activities/delete/[id]/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -6,10 +7,14 @@ import { useRouter, useParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { Activity } from "@/lib/types";
 
-type ActivityMinimal = Pick<Activity, "id" | "title">;
+// ✅ FIX: No longer use Pick or ActivityMinimal, use TypeScript's Partial utility.
+// It's more flexible and doesn't require us to list the keys manually.
+type ActivityForConfirmation = Partial<Activity>;
 
 export default function DeleteActivityPage() {
-  const [activity, setActivity] = useState<ActivityMinimal | null>(null);
+  const [activity, setActivity] = useState<ActivityForConfirmation | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -21,16 +26,17 @@ export default function DeleteActivityPage() {
     if (!id) return;
 
     const fetchActivity = async () => {
+      // ✅ FIX: Select 'title_no' instead of the non-existent 'title'
       const { data, error } = await supabase
         .from("activities")
-        .select("id, title") // only what we need
+        .select("id, title_no") // We will use the Norwegian title for confirmation
         .eq("id", id)
         .single();
 
       if (error || !data) {
         notFound();
       } else {
-        setActivity(data as ActivityMinimal);
+        setActivity(data);
       }
       setLoading(false);
     };
@@ -38,6 +44,7 @@ export default function DeleteActivityPage() {
   }, [id]);
 
   const handleDelete = async () => {
+    // This function remains correct and does not need changes
     if (!id) return;
     setIsDeleting(true);
     setError(null);
@@ -70,7 +77,8 @@ export default function DeleteActivityPage() {
           {activity ? (
             <p className="lead">
               Are you sure you want to permanently delete the activity:{" "}
-              <strong>&quot;{activity.title}&quot;</strong>
+              {/* ✅ FIX: Display the title_no from the fetched data */}
+              <strong>&quot;{activity.title_no}&quot;</strong>
             </p>
           ) : (
             <p className="lead">
