@@ -23,7 +23,6 @@ export default function EditActivityPage() {
   useEffect(() => {
     if (!id) return;
     const fetchActivity = async () => {
-      // ... (fetchActivity logic remains the same)
       const { data, error } = await supabase
         .from("activities")
         .select("*")
@@ -62,15 +61,12 @@ export default function EditActivityPage() {
     setIsSubmitting(true);
     setError(null);
 
-    let finalImageUrl: string | null = activity?.image_url || null; // Start with the existing image URL
-
-    // 1. If a new file is uploaded, it takes highest priority
+    let finalImageUrl: string | null = activity?.image_url || null;
     if (imageFile) {
       const newUrl = await uploadActivityImage();
       if (newUrl) {
         finalImageUrl = newUrl;
       } else {
-        // Upload failed, so stop submission
         setIsSubmitting(false);
         return;
       }
@@ -78,19 +74,19 @@ export default function EditActivityPage() {
 
     const formData = new FormData(formRef.current);
     const pastedUrl = formData.get("image_url") as string;
-
-    // 2. If no new file was uploaded, check if the URL field was changed
-    // We check if pastedUrl is different from the original activity.image_url
     if (!imageFile && pastedUrl !== activity?.image_url) {
       finalImageUrl = pastedUrl;
     }
 
+    // UPDATED: The updatedActivity object now includes bilingual fields
     const updatedActivity = {
-      title: formData.get("title"),
       date: formData.get("date"),
-      description: formData.get("description"),
       image_url: finalImageUrl,
       registration_link: formData.get("registration_link"),
+      title_no: formData.get("title_no"),
+      title_ar: formData.get("title_ar"),
+      description_no: formData.get("description_no"),
+      description_ar: formData.get("description_ar"),
     };
 
     const { error: updateError } = await supabase
@@ -108,7 +104,6 @@ export default function EditActivityPage() {
   };
 
   const formatDateTimeLocal = (isoDate: string) => {
-    // ... (This function remains the same)
     if (!isoDate) return "";
     const date = new Date(isoDate);
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
@@ -131,20 +126,36 @@ export default function EditActivityPage() {
       <div className="card border-0 shadow-sm">
         <div className="card-body">
           <form onSubmit={handleSubmit} ref={formRef}>
-            {/* ... (Title, Date, Description inputs are the same) ... */}
-            <div className="mb-3">
-              <label htmlFor="title" className="form-label">
-                Title
-              </label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                className="form-control"
-                defaultValue={activity.title}
-                required
-              />
+            {/* === UPDATED BILINGUAL FIELDS === */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label htmlFor="title_no" className="form-label">
+                  Title (Norwegian)
+                </label>
+                <input
+                  type="text"
+                  id="title_no"
+                  name="title_no"
+                  className="form-control"
+                  defaultValue={activity.title_no || ""}
+                  required
+                />
+              </div>
+              <div className="col-md-6 mb-3">
+                <label htmlFor="title_ar" className="form-label">
+                  Title (Arabic)
+                </label>
+                <input
+                  type="text"
+                  id="title_ar"
+                  name="title_ar"
+                  className="form-control"
+                  defaultValue={activity.title_ar || ""}
+                  dir="rtl"
+                />
+              </div>
             </div>
+
             <div className="mb-3">
               <label htmlFor="date" className="form-label">
                 Date and Time
@@ -158,20 +169,36 @@ export default function EditActivityPage() {
                 required
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="description" className="form-label">
-                Description
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                className="form-control"
-                rows={4}
-                defaultValue={activity.description || ""}
-              ></textarea>
-            </div>
 
-            {/* Current Image Preview */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label htmlFor="description_no" className="form-label">
+                  Description (Norwegian)
+                </label>
+                <textarea
+                  id="description_no"
+                  name="description_no"
+                  className="form-control"
+                  rows={4}
+                  defaultValue={activity.description_no || ""}
+                ></textarea>
+              </div>
+              <div className="col-md-6 mb-3">
+                <label htmlFor="description_ar" className="form-label">
+                  Description (Arabic)
+                </label>
+                <textarea
+                  id="description_ar"
+                  name="description_ar"
+                  className="form-control"
+                  rows={4}
+                  defaultValue={activity.description_ar || ""}
+                  dir="rtl"
+                ></textarea>
+              </div>
+            </div>
+            {/* =============================== */}
+
             {activity.image_url && (
               <div className="mb-3">
                 <label className="form-label">Current Image</label>
@@ -189,7 +216,6 @@ export default function EditActivityPage() {
               </div>
             )}
 
-            {/* DUAL IMAGE INPUTS */}
             <div className="mb-3">
               <label htmlFor="image" className="form-label">
                 Upload New Image
@@ -221,7 +247,6 @@ export default function EditActivityPage() {
                 defaultValue={activity.image_url || ""}
               />
             </div>
-            {/* ======================= */}
 
             <div className="mb-3">
               <label htmlFor="registration_link" className="form-label">

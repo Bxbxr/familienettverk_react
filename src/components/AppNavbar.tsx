@@ -1,14 +1,25 @@
 // src/components/AppNavbar.tsx
-"use client"; // <-- Needs to be a client component to be interactive
-
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/context/LanguageContext"; // <-- Import our hook
+import { useLanguage } from "@/context/LanguageContext";
+import { useEffect } from "react";
 
 export default function AppNavbar() {
   const pathname = usePathname();
-  const { locale, setLocale, messages } = useLanguage(); // <-- Use the hook
+  const { locale, setLocale, messages } = useLanguage();
+
+  // Add RTL class to body when Arabic is selected
+  useEffect(() => {
+    document.documentElement.lang = locale;
+
+    if (locale === "ar") {
+      document.body.classList.add("rtl-active");
+    } else {
+      document.body.classList.remove("rtl-active");
+    }
+  }, [locale]);
 
   const navLinkClass = (path: string) => {
     return `nav-link ${pathname === path ? "active" : ""}`;
@@ -39,7 +50,6 @@ export default function AppNavbar() {
 
         <div id="navbarNav" className="collapse navbar-collapse">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-            {/* Use translated text */}
             <li className="nav-item">
               <Link href="/" className={navLinkClass("/")}>
                 {messages.Navbar.home}
@@ -72,7 +82,6 @@ export default function AppNavbar() {
             </li>
           </ul>
 
-          {/* Functional Language Switcher */}
           <div className="d-flex align-items-center lang-switcher">
             <button
               className={`btn btn-lang ${locale === "no" ? "active" : ""}`}

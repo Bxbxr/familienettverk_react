@@ -1,11 +1,13 @@
 // src/app/volunteers/page.tsx
-"use client"; // Dette må være en klientkomponent for å håndtere skjema og innsending
+"use client";
 
 import { useState, FormEvent } from "react";
 import { supabase } from "@/lib/supabaseClient";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function VolunteersPage() {
-  const [formState, setFormState] = useState("idle"); // 'idle', 'submitting', 'success', 'error'
+  const { messages } = useLanguage();
+  const [formState, setFormState] = useState("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -30,9 +32,7 @@ export default function VolunteersPage() {
 
     if (error) {
       console.error("Feil ved innsending av skjema:", error);
-      setErrorMessage(
-        "Det oppstod en feil ved innsending av søknaden. Vennligst prøv igjen."
-      );
+      setErrorMessage(messages.VolunteersPage.errorText);
       setFormState("error");
     } else {
       setFormState("success");
@@ -43,11 +43,10 @@ export default function VolunteersPage() {
     return (
       <div className="container py-5 text-center">
         <div className="alert alert-success" role="alert">
-          <h4 className="alert-heading">Tusen takk!</h4>
-          <p>
-            Din søknad om frivillig arbeid er mottatt. Vi tar kontakt med deg
-            snart.
-          </p>
+          <h4 className="alert-heading">
+            {messages.VolunteersPage.successTitle}
+          </h4>
+          <p>{messages.VolunteersPage.successText}</p>
         </div>
       </div>
     );
@@ -56,10 +55,8 @@ export default function VolunteersPage() {
   return (
     <div className="container py-5">
       <div className="text-center mb-5">
-        <h1 className="display-4">Bli Frivillig</h1>
-        <p className="lead">
-          Bli med i teamet vårt og gjør en forskjell i samfunnet.
-        </p>
+        <h1 className="display-4">{messages.VolunteersPage.title}</h1>
+        <p className="lead">{messages.VolunteersPage.subtitle}</p>
       </div>
 
       <div className="row">
@@ -71,7 +68,7 @@ export default function VolunteersPage() {
             <div className="row g-3">
               <div className="col-md-6">
                 <label htmlFor="fullName" className="form-label">
-                  Fullt navn
+                  {messages.VolunteersPage.form.fullName}
                 </label>
                 <input
                   type="text"
@@ -83,7 +80,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-6">
                 <label htmlFor="email" className="form-label">
-                  E-postadresse
+                  {messages.VolunteersPage.form.email}
                 </label>
                 <input
                   type="email"
@@ -95,7 +92,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-4">
                 <label htmlFor="age" className="form-label">
-                  Alder
+                  {messages.VolunteersPage.form.age}
                 </label>
                 <input
                   type="number"
@@ -106,7 +103,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-8">
                 <label htmlFor="phone" className="form-label">
-                  Telefon
+                  {messages.VolunteersPage.form.phone}
                 </label>
                 <input
                   type="tel"
@@ -118,7 +115,7 @@ export default function VolunteersPage() {
               </div>
               <div className="col-12">
                 <label htmlFor="address" className="form-label">
-                  Adresse
+                  {messages.VolunteersPage.form.address}
                 </label>
                 <input
                   type="text"
@@ -129,37 +126,49 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-6">
                 <label htmlFor="gender" className="form-label">
-                  Kjønn
+                  {messages.VolunteersPage.form.gender}
                 </label>
                 <select className="form-select" id="gender" name="gender">
-                  <option value="">Velg...</option>
-                  <option value="Male">Mann</option>
-                  <option value="Female">Kvinne</option>
-                  <option value="Other">Annet</option>
+                  <option value="">
+                    {messages.VolunteersPage.form.genderChoose}
+                  </option>
+                  <option value="Male">
+                    {messages.VolunteersPage.form.genderMale}
+                  </option>
+                  <option value="Female">
+                    {messages.VolunteersPage.form.genderFemale}
+                  </option>
+                  <option value="Other">
+                    {messages.VolunteersPage.form.genderOther}
+                  </option>
                 </select>
               </div>
               <div className="col-md-6">
                 <label htmlFor="commitmentDuration" className="form-label">
-                  Varighet på engasjement
+                  {messages.VolunteersPage.form.commitment}
                 </label>
                 <select
                   className="form-select"
                   id="commitmentDuration"
                   name="commitmentDuration"
                 >
-                  <option value="">Velg...</option>
+                  <option value="">
+                    {messages.VolunteersPage.form.commitmentChoose}
+                  </option>
                   <option value="Short-term (1-3 months)">
-                    Kort sikt (1-3 måneder)
+                    {messages.VolunteersPage.form.commitmentShort}
                   </option>
                   <option value="Long-term (6+ months)">
-                    Lang sikt (6+ måneder)
+                    {messages.VolunteersPage.form.commitmentLong}
                   </option>
-                  <option value="Event-based">Basert på arrangementer</option>
+                  <option value="Event-based">
+                    {messages.VolunteersPage.form.commitmentEvent}
+                  </option>
                 </select>
               </div>
               <div className="col-12">
                 <label htmlFor="skills" className="form-label">
-                  Ferdigheter (f.eks. undervisning, sport, kunst)
+                  {messages.VolunteersPage.form.skills}
                 </label>
                 <textarea
                   className="form-control"
@@ -170,46 +179,61 @@ export default function VolunteersPage() {
               </div>
               <div className="col-md-6">
                 <label htmlFor="availability" className="form-label">
-                  Tilgjengelighet
+                  {messages.VolunteersPage.form.availability}
                 </label>
                 <select
                   className="form-select"
                   id="availability"
                   name="availability"
                 >
-                  <option value="">Velg...</option>
-                  <option value="Weekdays">Hverdager</option>
-                  <option value="Weekends">Helger</option>
-                  <option value="Flexible">Fleksibel</option>
+                  <option value="">
+                    {messages.VolunteersPage.form.availabilityChoose}
+                  </option>
+                  <option value="Weekdays">
+                    {messages.VolunteersPage.form.availabilityWeekdays}
+                  </option>
+                  <option value="Weekends">
+                    {messages.VolunteersPage.form.availabilityWeekends}
+                  </option>
+                  <option value="Flexible">
+                    {messages.VolunteersPage.form.availabilityFlexible}
+                  </option>
                 </select>
               </div>
               <div className="col-md-6">
                 <label htmlFor="volunteeringStyle" className="form-label">
-                  Frivillig stil
+                  {messages.VolunteersPage.form.style}
                 </label>
                 <select
                   className="form-select"
                   id="volunteeringStyle"
                   name="volunteeringStyle"
                 >
-                  <option value="">Velg...</option>
-                  <option value="In-person">På stedet</option>
-                  <option value="Online">Online</option>
-                  <option value="Both">Begge</option>
+                  <option value="">
+                    {messages.VolunteersPage.form.styleChoose}
+                  </option>
+                  <option value="In-person">
+                    {messages.VolunteersPage.form.styleInPerson}
+                  </option>
+                  <option value="Online">
+                    {messages.VolunteersPage.form.styleOnline}
+                  </option>
+                  <option value="Both">
+                    {messages.VolunteersPage.form.styleBoth}
+                  </option>
                 </select>
               </div>
             </div>
-
             <hr className="my-4" />
-
             <button
               type="submit"
               className="w-100 btn btn-primary btn-lg"
               disabled={formState === "submitting"}
             >
-              {formState === "submitting" ? "Sender..." : "Send søknad"}
+              {formState === "submitting"
+                ? messages.VolunteersPage.form.submitting
+                : messages.VolunteersPage.form.submit}
             </button>
-
             {formState === "error" && (
               <div className="alert alert-danger mt-3" role="alert">
                 {errorMessage}

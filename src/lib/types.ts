@@ -2,9 +2,18 @@
 export interface Activity {
   id: number;
   created_at: string;
-  title: string;
+  // The old fields are removed
+  // title: string;
+  // description: string | null;
+
+  // New bilingual fields
+  title_no: string | null;
+  title_ar: string | null;
+  description_no: string | null;
+  description_ar: string | null;
+
+  // Unchanged fields
   date: string;
-  description: string | null;
   image_url: string | null;
   registration_link: string | null;
 }

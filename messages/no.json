@@ -12,18 +12,15 @@
     "subtitle": "Bygger et sterkere samfunn, sammen.",
     "button": "Se Våre Aktiviteter"
   },
-  "HomePage": {
-    "whoWeAreTitle": "Hvem vi er",
-    "whoWeAreText": "Familienettverk er en ungdomsorganisasjon dedikert til å skape et positivt og inkluderende miljø for alle.",
-    "whoWeAreButton": "Lær mer om oss",
-    "latestActivitiesTitle": "Kommende Aktiviteter"
+  "WhoWeAreSection": {
+    "title": "Vårt budskap",
+    "text": "Organisasjonen Familienettverk Vi er en sosial organisasjon i Bergen som arbeider for å støtte integreringen av kvinner, familier og ungdom i det norske samfunnet. Vi ønsker å bygge et trygt og inspirerende nettverk, hvor familier kan dele erfaringer, lære om sine rettigheter, styrke familiebånd og ta vare på tradisjoner. Gjennom møter, aktiviteter og kurs har vi som mål å fremme kunnskap, språk og jobbmuligheter, samt gi støtte i utfordrende tider.",
+    "button": "Les Mer Om Oss"
   },
-  "...": "...",
-  "HomePage": {
-    "whoWeAreTitle": "Hvem vi er",
-    "whoWeAreText": "...",
-    "whoWeAreButton": "...",
-    "latestActivitiesTitle": "Kommende Aktiviteter"
+  "LatestActivitiesSection": {
+    "title": "Kommende Aktiviteter",
+    "noActivities": "Ingen kommende aktiviteter planlagt for øyeblikket. Vennligst sjekk tilbake snart!",
+    "loading": "Laster aktiviteter..."
   },
   "Dashboard": {
     "title": "Dashboard",
@@ -31,5 +28,114 @@
     "totalActivities": "Totalt Aktiviteter",
     "totalVisitors": "Totalt Besøkende",
     "analyticsNote": "Analyse aktivert ved distribusjon."
+  },
+  "ActivityCard": {
+    "ended": "Avsluttet",
+    "upcoming": "Kommende",
+    "locale": "nb-NO"
+  },
+  "ActivitiesPage": {
+    "title": "Alle Aktiviteter",
+    "subtitle": "Utforsk våre kommende og tidligere arrangementer.",
+    "noActivities": "Det er ingen aktiviteter å vise for øyeblikket.",
+    "loading": "Laster aktiviteter..."
+  },
+  "ActivityDetailPage": {
+    "breadcrumb": "Aktiviteter",
+    "register": "Registrer Nå",
+    "ended": "Avsluttet",
+    "upcoming": "Kommende",
+    "locale": "nb-NO",
+    "localeWithOptions": "no-NO"
+  },
+  "GalleryPage": {
+    "title": "Galleri",
+    "subtitle": "Et glimt inn i vårt livlige samfunn og arrangementer."
+  },
+  "AboutPage": {
+    "headerTitle": "Om Oss",
+    "headerSubtitle": "Vår misjon, visjon og teamet bak Familienettverk",
+    "missionBadge": "Vår Misjon",
+    "missionTitle": "Skape et trygt og inkluderende miljø",
+    "missionText": "Et trygt og inkluderende miljø for alle Vi jobber for å skape et trygt, inkluderende og inspirerende miljø hvor kvinner, familier og ungdom kan bygge relasjoner, lære og vokse. Gjennom våre aktiviteter og møter har vi som mål å fremme personlig utvikling, samfunnsengasjement, bevaring av tradisjoner og varige vennskap.",
+    "feature1": "Inkluderende fellesskap",
+    "feature2": "Personlig utvikling",
+    "feature3": "Varige vennskap",
+    "visionBadge": "Vår Visjon",
+    "visionTitle": "Et samfunn for alle unge",
+    "visionText": "Vi ser for oss et samfunn hvor hver unge person føler seg verdsatt, støttet og utstyrt med selvtillit og ferdigheter til å nå sitt fulle potensial og bidra positivt til samfunnet.",
+    "visionGraphicTitle": "Vår Visjon",
+    "visionGraphicText": "Et samfunn hvor hver unge føler seg verdsatt",
+    "stat1": "Unge deltakere",
+    "stat2": "Aktiviteter",
+    "stat3": "År erfaring",
+    "teamBadge": "Vårt Team",
+    "teamTitle": "Møt teamet vårt",
+    "teamSubtitle": "De fantastiske menneskene som gjør Familienettverk mulig",
+    "teamMember1Name": "Sanna Sarmini",
+    "teamMember1Role": "Grunnlegger & Direktør",
+    "teamMember1Bio": "Pasjonert for ungdomsarbeid med over 15 års erfaring.",
+    "teamMember2Name": "Kamal Shaalan",
+    "teamMember2Role": "Programkoordinator",
+    "teamMember2Bio": "Ekspert på å lage engasjerende aktiviteter for unge.",
+    "teamMember3Name": "Ibrahim Kasem",
+    "teamMember3Role": "Ungdomsleder",
+    "teamMember3Bio": "Fokuserer på mentoring og personlig utvikling.",
+    "teamMember4Name": "Sarah Wilson",
+    "teamMember4Role": "Frivilligkoordinator",
+    "teamMember4Bio": "Bygger broer mellom samfunn og ungdom.",
+    "ctaTitle": "Bli en del av familien",
+    "ctaSubtitle": "Vil du være med på å skape positive endringer i unge menneskers liv?",
+    "ctaButtonVolunteer": "Bli frivillig",
+    "ctaButtonContact": "Kontakt oss"
+  },
+  "ContactPage": {
+    "title": "Kontakt Oss",
+    "subtitle": "Vi vil gjerne høre fra deg. Ta kontakt hvis du har spørsmål.",
+    "infoTitle": "Kontaktinformasjon",
+    "address": "123 Community Lane, Oslo, Norge",
+    "followUs": "Følg Oss",
+    "formTitle": "Send Oss en Melding",
+    "formName": "Fullt Navn",
+    "formEmail": "E-postadresse",
+    "formMessage": "Melding",
+    "formButton": "Send Melding"
+  },
+  "VolunteersPage": {
+    "title": "Bli Frivillig",
+    "subtitle": "Bli med i teamet vårt og gjør en forskjell i samfunnet.",
+    "successTitle": "Tusen takk!",
+    "successText": "Din søknad om frivillig arbeid er mottatt. Vi tar kontakt med deg snart.",
+    "errorText": "Det oppstod en feil ved innsending av søknaden. Vennligst prøv igjen.",
+    "form": {
+      "fullName": "Fullt navn",
+      "email": "E-postadresse",
+      "age": "Alder",
+      "phone": "Telefon",
+      "address": "Adresse",
+      "gender": "Kjønn",
+      "genderChoose": "Velg...",
+      "genderMale": "Mann",
+      "genderFemale": "Kvinne",
+      "genderOther": "Annet",
+      "commitment": "Varighet på engasjement",
+      "commitmentChoose": "Velg...",
+      "commitmentShort": "Kort sikt (1-3 måneder)",
+      "commitmentLong": "Lang sikt (6+ måneder)",
+      "commitmentEvent": "Basert på arrangementer",
+      "skills": "Ferdigheter (f.eks. undervisning, sport, kunst)",
+      "availability": "Tilgjengelighet",
+      "availabilityChoose": "Velg...",
+      "availabilityWeekdays": "Hverdager",
+      "availabilityWeekends": "Helger",
+      "availabilityFlexible": "Fleksibel",
+      "style": "Frivillig stil",
+      "styleChoose": "Velg...",
+      "styleInPerson": "På stedet",
+      "styleOnline": "Online",
+      "styleBoth": "Begge",
+      "submitting": "Sender...",
+      "submit": "Send søknad"
+    }
   }
 }

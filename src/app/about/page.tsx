@@ -1,21 +1,28 @@
 // src/app/about/page.tsx
+"use client";
+
 import Image from "next/image";
 import "./about.css";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutUsPage() {
+  const { messages } = useLanguage();
+
   return (
     <div className="about-page">
       {/* Header Section */}
       <div className="container py-5">
         <div className="text-center mb-5">
-          <h1 className="display-2 fw-bold mb-4 fade-in-up">Om Oss</h1>
+          <h1 className="display-2 fw-bold mb-4 fade-in-up">
+            {messages.AboutPage.headerTitle}
+          </h1>
           <p className="lead text-muted fade-in-up-delay-1">
-            Vår misjon, visjon og teamet bak Familienettverk
+            {messages.AboutPage.headerSubtitle}
           </p>
         </div>
       </div>
 
-      {/* Mission and Vision Section */}
+      {/* Mission Section */}
       <section className="py-5">
         <div className="container">
           <div className="row align-items-center mb-5">
@@ -23,7 +30,7 @@ export default function AboutUsPage() {
               <div className="image-card">
                 <Image
                   src="/images/gallery/5.jpg"
-                  alt="Vår misjon"
+                  alt={messages.AboutPage.missionBadge}
                   width={600}
                   height={400}
                   className="img-fluid rounded-4"
@@ -35,38 +42,33 @@ export default function AboutUsPage() {
               <div className="content-card">
                 <div className="section-badge mb-3">
                   <span className="badge bg-primary bg-gradient px-3 py-2 rounded-pill">
-                    Vår Misjon
+                    {messages.AboutPage.missionBadge}
                   </span>
                 </div>
                 <h2 className="display-5 fw-bold mb-4">
-                  Skape et trygt og inkluderende miljø
+                  {messages.AboutPage.missionTitle}
                 </h2>
                 <p className="lead text-muted mb-4">
-                  Et trygt og inkluderende miljø for alle Vi jobber for å skape
-                  et trygt, inkluderende og inspirerende miljø hvor kvinner,
-                  familier og ungdom kan bygge relasjoner, lære og vokse.
-                  Gjennom våre aktiviteter og møter har vi som mål å fremme
-                  personlig utvikling, samfunnsengasjement, bevaring av
-                  tradisjoner og varige vennskap.
+                  {messages.AboutPage.missionText}
                 </p>
                 <div className="feature-list">
                   <div className="feature-item d-flex align-items-center mb-3">
                     <div className="feature-icon bg-primary bg-gradient rounded-circle me-3">
                       <span className="text-white">♥</span>
                     </div>
-                    <span>Inkluderende fellesskap</span>
+                    <span>{messages.AboutPage.feature1}</span>
                   </div>
                   <div className="feature-item d-flex align-items-center mb-3">
                     <div className="feature-icon bg-success bg-gradient rounded-circle me-3">
                       <span className="text-white">👥</span>
                     </div>
-                    <span>Personlig utvikling</span>
+                    <span>{messages.AboutPage.feature2}</span>
                   </div>
                   <div className="feature-item d-flex align-items-center">
                     <div className="feature-icon bg-warning bg-gradient rounded-circle me-3">
                       <span className="text-white">⭐</span>
                     </div>
-                    <span>Varige vennskap</span>
+                    <span>{messages.AboutPage.feature3}</span>
                   </div>
                 </div>
               </div>
@@ -80,9 +82,11 @@ export default function AboutUsPage() {
                 <div className="vision-circle">
                   <div className="vision-content text-center p-4">
                     <div className="display-4 text-primary mb-3">💡</div>
-                    <h4 className="fw-bold">Vår Visjon</h4>
+                    <h4 className="fw-bold">
+                      {messages.AboutPage.visionGraphicTitle}
+                    </h4>
                     <p className="small text-muted mb-0">
-                      Et samfunn hvor hver unge føler seg verdsatt
+                      {messages.AboutPage.visionGraphicText}
                     </p>
                   </div>
                 </div>
@@ -92,16 +96,14 @@ export default function AboutUsPage() {
               <div className="content-card">
                 <div className="section-badge mb-3">
                   <span className="badge bg-success bg-gradient px-3 py-2 rounded-pill">
-                    Vår Visjon
+                    {messages.AboutPage.visionBadge}
                   </span>
                 </div>
                 <h2 className="display-5 fw-bold mb-4">
-                  Et samfunn for alle unge
+                  {messages.AboutPage.visionTitle}
                 </h2>
                 <p className="lead text-muted mb-4">
-                  Vi ser for oss et samfunn hvor hver unge person føler seg
-                  verdsatt, støttet og utstyrt med selvtillit og ferdigheter til
-                  å nå sitt fulle potensial og bidra positivt til samfunnet.
+                  {messages.AboutPage.visionText}
                 </p>
                 <div className="stats-row row text-center">
                   <div className="col-4">
@@ -109,7 +111,9 @@ export default function AboutUsPage() {
                       <h3 className="display-6 fw-bold text-primary mb-1">
                         500+
                       </h3>
-                      <p className="small text-muted mb-0">Unge deltakere</p>
+                      <p className="small text-muted mb-0">
+                        {messages.AboutPage.stat1}
+                      </p>
                     </div>
                   </div>
                   <div className="col-4">
@@ -117,15 +121,19 @@ export default function AboutUsPage() {
                       <h3 className="display-6 fw-bold text-success mb-1">
                         50+
                       </h3>
-                      <p className="small text-muted mb-0">Aktiviteter</p>
+                      <p className="small text-muted mb-0">
+                        {messages.AboutPage.stat2}
+                      </p>
                     </div>
                   </div>
                   <div className="col-4">
                     <div className="stat-item">
                       <h3 className="display-6 fw-bold text-warning mb-1">
-                        10+
+                        2+
                       </h3>
-                      <p className="small text-muted mb-0">År erfaring</p>
+                      <p className="small text-muted mb-0">
+                        {messages.AboutPage.stat3}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -141,23 +149,21 @@ export default function AboutUsPage() {
           <div className="text-center mb-5">
             <div className="section-badge mb-3">
               <span className="badge bg-dark px-3 py-2 rounded-pill">
-                Vårt Team
+                {messages.AboutPage.teamBadge}
               </span>
             </div>
-            <h2 className="display-4 fw-bold mb-3">Møt teamet vårt</h2>
-            <p className="lead text-muted">
-              De fantastiske menneskene som gjør Familienettverk mulig
-            </p>
+            <h2 className="display-4 fw-bold mb-3">
+              {messages.AboutPage.teamTitle}
+            </h2>
+            <p className="lead text-muted">{messages.AboutPage.teamSubtitle}</p>
           </div>
-
           <div className="row g-4">
-            {/* Team Member 1 */}
             <div className="col-lg-3 col-md-6">
               <div className="team-card h-100">
                 <div className="team-image-wrapper">
                   <Image
-                    src="/images/team1.jpg"
-                    alt="John Doe"
+                    src="/images/sanna.jpg"
+                    alt={messages.AboutPage.teamMember1Name}
                     width={300}
                     height={300}
                     className="team-image"
@@ -174,24 +180,24 @@ export default function AboutUsPage() {
                   </div>
                 </div>
                 <div className="team-content">
-                  <h5 className="fw-bold mb-1">John Doe</h5>
+                  <h5 className="fw-bold mb-1">
+                    {messages.AboutPage.teamMember1Name}
+                  </h5>
                   <p className="text-primary small mb-2">
-                    Grunnlegger & Direktør
+                    {messages.AboutPage.teamMember1Role}
                   </p>
                   <p className="small text-muted">
-                    Pasjonert for ungdomsarbeid med over 15 års erfaring.
+                    {messages.AboutPage.teamMember1Bio}
                   </p>
                 </div>
               </div>
             </div>
-
-            {/* Team Member 2 */}
             <div className="col-lg-3 col-md-6">
               <div className="team-card h-100">
                 <div className="team-image-wrapper">
                   <Image
-                    src="/images/team2.jpg"
-                    alt="Jane Smith"
+                    src="/images/kamal.jpg"
+                    alt={messages.AboutPage.teamMember2Name}
                     width={300}
                     height={300}
                     className="team-image"
@@ -208,22 +214,24 @@ export default function AboutUsPage() {
                   </div>
                 </div>
                 <div className="team-content">
-                  <h5 className="fw-bold mb-1">Jane Smith</h5>
-                  <p className="text-success small mb-2">Programkoordinator</p>
+                  <h5 className="fw-bold mb-1">
+                    {messages.AboutPage.teamMember2Name}
+                  </h5>
+                  <p className="text-success small mb-2">
+                    {messages.AboutPage.teamMember2Role}
+                  </p>
                   <p className="small text-muted">
-                    Ekspert på å lage engasjerende aktiviteter for unge.
+                    {messages.AboutPage.teamMember2Bio}
                   </p>
                 </div>
               </div>
             </div>
-
-            {/* Team Member 3 */}
             <div className="col-lg-3 col-md-6">
               <div className="team-card h-100">
                 <div className="team-image-wrapper">
                   <Image
-                    src="/images/team3.jpg"
-                    alt="Mike Johnson"
+                    src="/images/ibrahim.JPG"
+                    alt={messages.AboutPage.teamMember3Name}
                     width={300}
                     height={300}
                     className="team-image"
@@ -240,22 +248,24 @@ export default function AboutUsPage() {
                   </div>
                 </div>
                 <div className="team-content">
-                  <h5 className="fw-bold mb-1">Mike Johnson</h5>
-                  <p className="text-warning small mb-2">Ungdomsleder</p>
+                  <h5 className="fw-bold mb-1">
+                    {messages.AboutPage.teamMember3Name}
+                  </h5>
+                  <p className="text-warning small mb-2">
+                    {messages.AboutPage.teamMember3Role}
+                  </p>
                   <p className="small text-muted">
-                    Fokuserer på mentoring og personlig utvikling.
+                    {messages.AboutPage.teamMember3Bio}
                   </p>
                 </div>
               </div>
             </div>
-
-            {/* Team Member 4 */}
             <div className="col-lg-3 col-md-6">
               <div className="team-card h-100">
                 <div className="team-image-wrapper">
                   <Image
                     src="/images/team4.jpg"
-                    alt="Sarah Wilson"
+                    alt={messages.AboutPage.teamMember4Name}
                     width={300}
                     height={300}
                     className="team-image"
@@ -272,10 +282,14 @@ export default function AboutUsPage() {
                   </div>
                 </div>
                 <div className="team-content">
-                  <h5 className="fw-bold mb-1">Sarah Wilson</h5>
-                  <p className="text-info small mb-2">Frivilligkoordinator</p>
+                  <h5 className="fw-bold mb-1">
+                    {messages.AboutPage.teamMember4Name}
+                  </h5>
+                  <p className="text-info small mb-2">
+                    {messages.AboutPage.teamMember4Role}
+                  </p>
                   <p className="small text-muted">
-                    Bygger broer mellom samfunn og ungdom.
+                    {messages.AboutPage.teamMember4Bio}
                   </p>
                 </div>
               </div>
@@ -290,21 +304,20 @@ export default function AboutUsPage() {
           <div className="row justify-content-center">
             <div className="col-lg-8 text-center">
               <h2 className="display-5 fw-bold text-white mb-4">
-                Bli en del av familien
+                {messages.AboutPage.ctaTitle}
               </h2>
               <p className="lead text-white-50 mb-4">
-                Vil du være med på å skape positive endringer i unge menneskers
-                liv?
+                {messages.AboutPage.ctaSubtitle}
               </p>
               <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
                 <a href="/volunteer" className="btn btn-light btn-lg px-4">
-                  Bli frivillig
+                  {messages.AboutPage.ctaButtonVolunteer}
                 </a>
                 <a
                   href="/contact"
                   className="btn btn-outline-light btn-lg px-4"
                 >
-                  Kontakt oss
+                  {messages.AboutPage.ctaButtonContact}
                 </a>
               </div>
             </div>

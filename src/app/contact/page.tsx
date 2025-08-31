@@ -1,32 +1,33 @@
 // src/app/contact/page.tsx
+"use client";
+
 import {
   FaFacebook,
   FaInstagram,
   FaEnvelope,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ContactUsPage() {
-  // ----> PASTE YOUR FORMSPREE ENDPOINT URL HERE <----
+  const { messages } = useLanguage();
   const FORMSPREE_ENDPOINT = "https://formspree.io/f/mandypwa";
 
   return (
     <div className="container py-5">
       <div className="text-center mb-5">
-        <h1 className="display-4">Kontakt Oss</h1>
-        <p className="lead">
-          Vi vil gjerne høre fra deg. Ta kontakt hvis du har spørsmål.
-        </p>
+        <h1 className="display-4">{messages.ContactPage.title}</h1>
+        <p className="lead">{messages.ContactPage.subtitle}</p>
       </div>
 
       <div className="row">
         {/* Column 1: Contact Information */}
         <div className="col-lg-5 mb-4 mb-lg-0">
           <div className="p-4 rounded bg-light h-100">
-            <h3 className="mb-4">Kontaktinformasjon</h3>
+            <h3 className="mb-4">{messages.ContactPage.infoTitle}</h3>
             <p className="d-flex align-items-center mb-3">
               <FaMapMarkerAlt className="me-3" size={20} />
-              <span>123 Community Lane, Oslo, Norge</span>
+              <span>{messages.ContactPage.address}</span>
             </p>
             <p className="d-flex align-items-center mb-4">
               <FaEnvelope className="me-3" size={20} />
@@ -35,7 +36,7 @@ export default function ContactUsPage() {
               </a>
             </p>
 
-            <h4 className="mb-3">Følg Oss</h4>
+            <h4 className="mb-3">{messages.ContactPage.followUs}</h4>
             <div className="d-flex">
               <a href="#" className="me-3 fs-3" aria-label="Facebook">
                 <FaFacebook />
@@ -50,11 +51,11 @@ export default function ContactUsPage() {
         {/* Column 2: Contact Form */}
         <div className="col-lg-7">
           <div className="p-4 rounded border">
-            <h3 className="mb-4">Send Oss en Melding</h3>
+            <h3 className="mb-4">{messages.ContactPage.formTitle}</h3>
             <form action={FORMSPREE_ENDPOINT} method="POST">
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
-                  Fullt Navn
+                  {messages.ContactPage.formName}
                 </label>
                 <input
                   type="text"
@@ -66,7 +67,7 @@ export default function ContactUsPage() {
               </div>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
-                  E-postadresse
+                  {messages.ContactPage.formEmail}
                 </label>
                 <input
                   type="email"
@@ -78,7 +79,7 @@ export default function ContactUsPage() {
               </div>
               <div className="mb-3">
                 <label htmlFor="message" className="form-label">
-                  Melding
+                  {messages.ContactPage.formMessage}
                 </label>
                 <textarea
                   className="form-control"
@@ -89,7 +90,7 @@ export default function ContactUsPage() {
                 ></textarea>
               </div>
               <button type="submit" className="btn btn-primary">
-                Send Melding
+                {messages.ContactPage.formButton}
               </button>
             </form>
           </div>

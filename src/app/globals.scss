@@ -197,6 +197,52 @@
   }
 }
 
+/* === RTL SUPPORT FOR NAVBAR === */
+/* RTL: Reverse the ORDER of navigation links */
+
+/* RTL Navigation items - reverse the order of individual nav items */
+body.rtl-active .navbar-nav {
+  direction: rtl !important;
+  display: flex !important;
+  flex-direction: row-reverse !important;
+}
+
+/* RTL Navigation links - align text to right */
+body.rtl-active .navbar-nav .nav-link {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* For mobile - stack items in reverse order */
+@media (max-width: 991.98px) {
+  body.rtl-active .navbar-nav {
+    flex-direction: column-reverse !important;
+    align-items: flex-end !important;
+  }
+
+  body.rtl-active .nav-link {
+    text-align: right !important;
+    width: 100% !important;
+  }
+}
+
+/* RTL Language switcher positioning */
+body.rtl-active .lang-switcher {
+  order: -1 !important;
+}
+
+/* RTL Navbar brand stays on right */
+body.rtl-active .navbar-brand {
+  order: 1 !important;
+}
+
+/* RTL underline animation adjustment */
+body.rtl-active .nav-link::after {
+  right: 50% !important;
+  left: auto !important;
+  transform: translateX(50%) !important;
+}
+
 /* === ANIMATIONS === */
 @keyframes slideDown {
   from {
@@ -249,7 +295,6 @@
 }
 
 /* === HERO SECTION STYLES === */
-/* === HERO SECTION STYLES === */
 .hero-section {
   position: relative;
   height: 70vh;
@@ -261,6 +306,11 @@
   background: #000;
   border-radius: 20px; /* Rounded corners */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  direction: ltr !important; /* Ensure hero section is NOT affected by RTL */
+}
+
+.hero-section * {
+  direction: ltr !important;
 }
 
 .hero-swiper {
@@ -383,13 +433,15 @@
   }
 }
 
-/* Responsive Adjustments */
+/* Responsive Adjustments - Updated for mobile width control */
 @media (max-width: 768px) {
   .hero-section {
     height: 60vh;
     min-height: 400px;
     border-radius: 12px;
     margin: 1.5rem auto;
+    width: 90%; /* Reduce width on mobile */
+    max-width: 500px; /* Set a max width for mobile */
   }
 
   .hero-content h1 {
@@ -402,6 +454,12 @@
 }
 
 @media (max-width: 480px) {
+  .hero-section {
+    width: 85%; /* Even smaller on very small screens */
+    max-width: 400px;
+    margin: 1rem auto;
+  }
+
   .hero-content h1 {
     font-size: 2.5rem;
   }
@@ -413,6 +471,15 @@
   .hero-content .btn {
     font-size: 1rem;
     padding: 0.8rem 1.5rem;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 360px) {
+  .hero-section {
+    width: 80%;
+    max-width: 320px;
+    margin: 0.5rem auto;
   }
 }
 
@@ -434,6 +501,7 @@
     transform: none;
   }
 }
+
 /* === CARD HOVER EFFECT === */
 /* === ENHANCED CARD STYLES WITH RED SPLASH === */
 .card-link-wrapper {
@@ -664,6 +732,7 @@
     width: 12px;
   }
 }
+
 /* === GALLERY PAGE STYLES === */
 .gallery-grid {
   display: grid;
@@ -676,7 +745,7 @@
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  aspect-ratio: 4 / 3; // Maintain a consistent aspect ratio for grid items
+  aspect-ratio: 4 / 3; /* Maintain a consistent aspect ratio for grid items */
 }
 
 .gallery-item img {

@@ -16,6 +16,7 @@ export default function CreateActivityPage() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const uploadActivityImage = async (): Promise<string | null> => {
+    // This function remains unchanged
     if (!imageFile) return null;
     const fileExt = imageFile.name.split(".").pop();
     const fileName = `${uuidv4()}.${fileExt}`;
@@ -44,29 +45,30 @@ export default function CreateActivityPage() {
     }
 
     let finalImageUrl: string | null = null;
-
-    // Step 1: Prioritize file upload
     if (imageFile) {
       finalImageUrl = await uploadActivityImage();
-      // If upload fails, stop the process
       if (!finalImageUrl) {
         setIsSubmitting(false);
         return;
       }
     }
 
-    // Step 2: If no file was uploaded, use the URL from the form
     const formData = new FormData(formRef.current);
     if (!finalImageUrl) {
       finalImageUrl = formData.get("image_url") as string | null;
     }
 
+    // UPDATED: The newActivity object now includes bilingual fields
     const newActivity = {
-      title: formData.get("title"),
+      // old title and description are removed from here
       date: formData.get("date"),
-      description: formData.get("description"),
-      image_url: finalImageUrl, // Use the determined image URL
+      image_url: finalImageUrl,
       registration_link: formData.get("registration_link"),
+      // New bilingual fields
+      title_no: formData.get("title_no"),
+      title_ar: formData.get("title_ar"),
+      description_no: formData.get("description_no"),
+      description_ar: formData.get("description_ar"),
     };
 
     const { error: insertError } = await supabase
@@ -75,7 +77,8 @@ export default function CreateActivityPage() {
 
     if (insertError) {
       setError(
-        "Failed to create activity. Please check the details and try again."
+        "Failed to create activity. Please check the details and try again. " +
+          insertError.message
       );
       setIsSubmitting(false);
     } else {
@@ -97,19 +100,34 @@ export default function CreateActivityPage() {
       <div className="card border-0 shadow-sm">
         <div className="card-body">
           <form onSubmit={handleSubmit} ref={formRef}>
-            {/* ... (Title, Date, Description inputs remain the same) ... */}
-            <div className="mb-3">
-              <label htmlFor="title" className="form-label">
-                Title
-              </label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                className="form-control"
-                required
-              />
+            {/* === UPDATED BILINGUAL FIELDS === */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label htmlFor="title_no" className="form-label">
+                  Title (Norwegian)
+                </label>
+                <input
+                  type="text"
+                  id="title_no"
+                  name="title_no"
+                  className="form-control"
+                  required
+                />
+              </div>
+              <div className="col-md-6 mb-3">
+                <label htmlFor="title_ar" className="form-label">
+                  Title (Arabic)
+                </label>
+                <input
+                  type="text"
+                  id="title_ar"
+                  name="title_ar"
+                  className="form-control"
+                  dir="rtl"
+                />
+              </div>
             </div>
+
             <div className="mb-3">
               <label htmlFor="date" className="form-label">
                 Date and Time
@@ -122,19 +140,35 @@ export default function CreateActivityPage() {
                 required
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="description" className="form-label">
-                Description
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                className="form-control"
-                rows={4}
-              ></textarea>
-            </div>
 
-            {/* === DUAL IMAGE INPUT SECTION === */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label htmlFor="description_no" className="form-label">
+                  Description (Norwegian)
+                </label>
+                <textarea
+                  id="description_no"
+                  name="description_no"
+                  className="form-control"
+                  rows={4}
+                ></textarea>
+              </div>
+              <div className="col-md-6 mb-3">
+                <label htmlFor="description_ar" className="form-label">
+                  Description (Arabic)
+                </label>
+                <textarea
+                  id="description_ar"
+                  name="description_ar"
+                  className="form-control"
+                  rows={4}
+                  dir="rtl"
+                ></textarea>
+              </div>
+            </div>
+            {/* =============================== */}
+
+            {/* Your existing image and link fields remain unchanged */}
             <div className="mb-3">
               <label htmlFor="image" className="form-label">
                 Upload Image
@@ -151,9 +185,7 @@ export default function CreateActivityPage() {
               />
               <div className="form-text">Prioritized over Image URL.</div>
             </div>
-
             <div className="text-center my-3 text-muted">OR</div>
-
             <div className="mb-3">
               <label htmlFor="image_url" className="form-label">
                 Image URL
@@ -166,8 +198,6 @@ export default function CreateActivityPage() {
                 placeholder="https://example.com/image.jpg"
               />
             </div>
-            {/* ================================= */}
-
             <div className="mb-3">
               <label htmlFor="registration_link" className="form-label">
                 Registration Link

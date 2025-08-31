@@ -8,26 +8,19 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
+import { useLanguage } from "@/context/LanguageContext"; // <-- Step 1: Import the hook
 
 const slides = [
-  {
-    image: "/images/slide1.jpg",
-  },
-  {
-    image: "/images/slide2.jpg",
-  },
-  {
-    image: "/images/slide3.jpg",
-  },
-  {
-    image: "/images/slide4.jpg",
-  },
-  {
-    image: "/images/slide5.jpg",
-  },
+  { image: "/images/slide1.jpg" },
+  { image: "/images/slide2.jpg" },
+  { image: "/images/slide3.jpg" },
+  { image: "/images/slide4.jpg" },
+  { image: "/images/slide5.jpg" },
 ];
 
 export default function HeroSection() {
+  const { messages } = useLanguage(); // <-- Step 2: Use the hook to get translations
+
   return (
     <div className="hero-section">
       {/* Layer 1: The Image Slider (in the background) */}
@@ -57,15 +50,11 @@ export default function HeroSection() {
 
       {/* Layer 3: The Text and Buttons (on top of everything) */}
       <div className="hero-content">
-        {/* The h1 will be styled by your .hero-content h1 CSS rule */}
-        <h1>Velkommen til Familienettverk</h1>
-
-        {/* The p tag will be styled by your .hero-content .lead CSS rule */}
-        <p className="lead">Vi bygger et sterkere fellesskap – sammen.</p>
-
-        {/* The Link will be styled by your .hero-content .btn CSS rule */}
+        {/* Step 3: Replace hardcoded text with dynamic values */}
+        <h1>{messages.HeroSection.title}</h1>
+        <p className="lead">{messages.HeroSection.subtitle}</p>
         <Link href="/activities" className="btn btn-primary">
-          Se Våre Aktiviteter
+          {messages.HeroSection.button}
         </Link>
       </div>
     </div>

@@ -12,18 +12,15 @@
     "subtitle": "نبني مجتمعًا أقوى، معًا.",
     "button": "شاهد أنشطتنا"
   },
-  "HomePage": {
-    "whoWeAreTitle": "من نحن",
-    "whoWeAreText": "شبكة العائلة هي منظمة شبابية مكرسة لخلق بيئة إيجابية وشاملة للجميع.",
-    "whoWeAreButton": "اعرف المزيد عنا",
-    "latestActivitiesTitle": "الأنشطة القادمة"
+  "WhoWeAreSection": {
+    "title": "رسالتنا",
+    "text": "منظمة شبكة العائلة هي منظمة اجتماعية في برغن تعمل على دعم اندماج النساء والأسر والشباب في المجتمع النرويجي. نسعى لبناء شبكة آمنة وملهمة، حيث يمكن للعائلات تبادل الخبرات، والتعرف على حقوقها، وتقوية الروابط الأسرية، والحفاظ على التقاليد. من خلال اللقاءات والأنشطة والدورات، نهدف إلى تعزيز المعرفة واللغة وفرص العمل، بالإضافة إلى تقديم الدعم في الأوقات الصعبة.",
+    "button": "اقرأ المزيد عنا"
   },
-  "...": "...",
-  "HomePage": {
-    "whoWeAreTitle": "من نحن",
-    "whoWeAreText": "...",
-    "whoWeAreButton": "...",
-    "latestActivitiesTitle": "الأنشطة القادمة"
+  "LatestActivitiesSection": {
+    "title": "الأنشطة القادمة",
+    "noActivities": "لا توجد أنشطة قادمة مجدولة في الوقت الحالي. يرجى التحقق مرة أخرى قريبًا!",
+    "loading": "جاري تحميل الأنشطة..."
   },
   "Dashboard": {
     "title": "لوحة التحكم",
@@ -31,5 +28,114 @@
     "totalActivities": "إجمالي الأنشطة",
     "totalVisitors": "إجمالي الزوار",
     "analyticsNote": "سيتم تفعيل التحليلات عند النشر."
+  },
+  "ActivityCard": {
+    "ended": "منتهى",
+    "upcoming": "قادم",
+    "locale": "ar-EG"
+  },
+  "ActivitiesPage": {
+    "title": "كل الأنشطة",
+    "subtitle": "تصفح فعالياتنا القادمة والسابقة.",
+    "noActivities": "لا توجد أنشطة لعرضها في الوقت الحالي.",
+    "loading": "جاري تحميل الأنشطة..."
+  },
+  "ActivityDetailPage": {
+    "breadcrumb": "الأنشطة",
+    "register": "سجل الآن",
+    "ended": "منتهى",
+    "upcoming": "قادم",
+    "locale": "ar-EG",
+    "localeWithOptions": "ar-EG"
+  },
+  "GalleryPage": {
+    "title": "معرض الصور",
+    "subtitle": "لمحة عن مجتمعنا النابض بالحياة وفعالياتنا."
+  },
+  "AboutPage": {
+    "headerTitle": "من نحن",
+    "headerSubtitle": "رسالتنا ورؤيتنا والفريق وراء شبكة العائلة",
+    "missionBadge": "رسالتنا",
+    "missionTitle": "خلق بيئة آمنة وشاملة",
+    "missionText": "بيئة آمنة وشاملة للجميع. نعمل على خلق بيئة آمنة وشاملة وملهمة حيث يمكن للنساء والأسر والشباب بناء العلاقات والتعلم والنمو. من خلال أنشطتتنا ولقاءاتنا، نهدف إلى تعزيز التنمية الشخصية والمشاركة المجتمعية والحفاظ على التقاليد والصداقات الدائمة.",
+    "feature1": "مجتمع شامل",
+    "feature2": "تنمية شخصية",
+    "feature3": "صداقات دائمة",
+    "visionBadge": "رؤيتنا",
+    "visionTitle": "مجتمع لجميع الشباب",
+    "visionText": "نتصور مجتمعًا يشعر فيه كل شاب بالتقدير والدعم ومجهزًا بالثقة والمهارات اللازمة للوصول إلى إمكاناتهم الكاملة والمساهمة بشكل إيجابي في المجتمع.",
+    "visionGraphicTitle": "رؤيتنا",
+    "visionGraphicText": "مجتمع يشعر فيه كل شاب بالتقدير",
+    "stat1": "مشارك شاب",
+    "stat2": "نشاط",
+    "stat3": "سنوات خبرة",
+    "teamBadge": "فريقنا",
+    "teamTitle": "تعرف على فريقنا",
+    "teamSubtitle": "الأشخاص الرائعون الذين يجعلون شبكة العائلة ممكنة",
+    "teamMember1Name": "سناء سرميني",
+    "teamMember1Role": "المؤسس والمدير",
+    "teamMember1Bio": "شغوف بالعمل الشبابي بخبرة تزيد عن 15 عامًا.",
+    "teamMember2Name": "كمال شعلان",
+    "teamMember2Role": "منسقة البرامج",
+    "teamMember2Bio": "خبيرة في إنشاء أنشطة جذابة للشباب.",
+    "teamMember3Name": "ابراهيم قاسم",
+    "teamMember3Role": "قائد الشباب",
+    "teamMember3Bio": "يركز على التوجيه والتنمية الشخصية.",
+    "teamMember4Name": "سارة ويلسون",
+    "teamMember4Role": "منسقة المتطوعين",
+    "teamMember4Bio": "تبني الجسور بين المجتمع والشباب.",
+    "ctaTitle": "كن جزءًا من العائلة",
+    "ctaSubtitle": "هل تريد أن تكون جزءًا من إحداث تغيير إيجابي في حياة الشباب؟",
+    "ctaButtonVolunteer": "كن متطوعًا",
+    "ctaButtonContact": "اتصل بنا"
+  },
+  "ContactPage": {
+    "title": "اتصل بنا",
+    "subtitle": "نود أن نسمع منك. تواصل معنا إذا كان لديك أي أسئلة.",
+    "infoTitle": "معلومات الاتصال",
+    "address": "123 Community Lane, أوسلو, النرويج",
+    "followUs": "تابعنا",
+    "formTitle": "أرسل لنا رسالة",
+    "formName": "الاسم الكامل",
+    "formEmail": "البريد الإلكتروني",
+    "formMessage": "الرسالة",
+    "formButton": "إرسال الرسالة"
+  },
+  "VolunteersPage": {
+    "title": "كن متطوعاً",
+    "subtitle": "انضم إلى فريقنا وأحدث فرقًا في المجتمع.",
+    "successTitle": "شكرًا جزيلًا!",
+    "successText": "تم استلام طلب التطوع الخاص بك. سنتواصل معك قريبًا.",
+    "errorText": "حدث خطأ أثناء إرسال طلبك. يرجى المحاولة مرة أخرى.",
+    "form": {
+      "fullName": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "age": "العمر",
+      "phone": "الهاتف",
+      "address": "العنوان",
+      "gender": "الجنس",
+      "genderChoose": "اختر...",
+      "genderMale": "ذكر",
+      "genderFemale": "أنثى",
+      "genderOther": "آخر",
+      "commitment": "مدة الالتزام",
+      "commitmentChoose": "اختر...",
+      "commitmentShort": "فترة قصيرة (1-3 أشهر)",
+      "commitmentLong": "فترة طويلة (6+ أشهر)",
+      "commitmentEvent": "حسب الفعالية",
+      "skills": "المهارات (مثال: التدريس، الرياضة، الفنون)",
+      "availability": "التفرغ",
+      "availabilityChoose": "اختر...",
+      "availabilityWeekdays": "أيام الأسبوع",
+      "availabilityWeekends": "عطلات نهاية الأسبوع",
+      "availabilityFlexible": "مرن",
+      "style": "نمط التطوع",
+      "styleChoose": "اختر...",
+      "styleInPerson": "حضوري",
+      "styleOnline": "عبر الإنترنت",
+      "styleBoth": "كلاهما",
+      "submitting": "جاري الإرسال...",
+      "submit": "إرسال الطلب"
+    }
   }
 }

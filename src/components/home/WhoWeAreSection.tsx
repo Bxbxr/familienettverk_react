@@ -1,22 +1,22 @@
 // src/components/home/WhoWeAreSection.tsx
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext"; // <-- Step 1: Import the hook
 
 export default function WhoWeAreSection() {
+  const { messages } = useLanguage(); // <-- Step 2: Use the hook to get translations
+
   return (
     <section className="py-5">
       <div className="container text-center">
-        <h2 className="mb-4">Vårt budskap</h2>
-        <p className="lead mb-4">
-          Organisasjonen Familienettverk Vi er en sosial organisasjon i Bergen
-          som arbeider for å støtte integreringen av kvinner, familier og ungdom
-          i det norske samfunnet. Vi ønsker å bygge et trygt og inspirerende
-          nettverk, hvor familier kan dele erfaringer, lære om sine rettigheter,
-          styrke familiebånd og ta vare på tradisjoner. Gjennom møter,
-          aktiviteter og kurs har vi som mål å fremme kunnskap, språk og
-          jobbmuligheter, samt gi støtte i utfordrende tider.
+        {/* Step 3: Replace hardcoded text with dynamic values */}
+        <h2 className="mb-4">{messages.WhoWeAreSection.title}</h2>
+        <p className="lead mb-4" style={{ whiteSpace: "pre-line" }}>
+          {messages.WhoWeAreSection.text}
         </p>
         <Link href="/about" className="btn btn-outline-secondary">
-          Les Mer Om Oss
+          {messages.WhoWeAreSection.button}
         </Link>
       </div>
     </section>
