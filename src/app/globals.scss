@@ -433,15 +433,15 @@ body.rtl-active .nav-link::after {
   }
 }
 
-/* Responsive Adjustments - Updated for mobile width control */
+/* Responsive Adjustments - Updated for much shorter mobile height */
 @media (max-width: 768px) {
   .hero-section {
-    height: 60vh;
-    min-height: 400px;
+    height: 35vh; /* Further reduced from 45vh to 35vh */
+    min-height: 250px; /* Further reduced from 300px to 250px */
     border-radius: 12px;
     margin: 1.5rem auto;
-    width: 90%; /* Reduce width on mobile */
-    max-width: 500px; /* Set a max width for mobile */
+    width: 90%;
+    max-width: 500px;
   }
 
   .hero-content h1 {
@@ -455,7 +455,9 @@ body.rtl-active .nav-link::after {
 
 @media (max-width: 480px) {
   .hero-section {
-    width: 85%; /* Even smaller on very small screens */
+    height: 30vh; /* Further reduced from 40vh to 30vh */
+    min-height: 220px; /* Further reduced from 280px to 220px */
+    width: 85%;
     max-width: 400px;
     margin: 1rem auto;
   }
@@ -477,6 +479,8 @@ body.rtl-active .nav-link::after {
 /* For very small screens */
 @media (max-width: 360px) {
   .hero-section {
+    height: 25vh; /* Further reduced from 35vh to 25vh */
+    min-height: 200px; /* Further reduced from 250px to 200px */
     width: 80%;
     max-width: 320px;
     margin: 0.5rem auto;
