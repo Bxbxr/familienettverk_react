@@ -264,7 +264,7 @@ export default function AboutUsPage() {
               <div className="team-card h-100">
                 <div className="team-image-wrapper">
                   <Image
-                    src="/images/team4.jpg"
+                    src="/images/ss.jpg"
                     alt={messages.AboutPage.teamMember4Name}
                     width={300}
                     height={300}
