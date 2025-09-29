@@ -5,7 +5,8 @@
     "gallery": "Galleri",
     "about": "Om Oss",
     "volunteer": "Frivillige",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "membership": "Medlemskap"
   },
   "HeroSection": {
     "title": "Velkommen til Familienettverk",
@@ -100,6 +101,19 @@
     "formEmail": "E-postadresse",
     "formMessage": "Melding",
     "formButton": "Send Melding"
+  },
+  "MembershipPage": {
+    "title": "Bli Medlem",
+    "subtitle": "Bli en del av vårt fellesskap ved å fullføre medlemskapsregistreringen.",
+    "step1Title": "Fyll ut dine opplysninger",
+    "step1Text": "Sørg for at alle dine data er korrekte.",
+    "step2Title": "Fullfør betaling",
+    "step2Text": "Fullfør betalingen via Vipps for å fullføre prosessen.",
+    "step3Title": "Gå til skjemaet",
+    "step3Text": "Klikk på knappen nedenfor for å gå til registreringsskjemaet.",
+    "formButton": "Gå til Medlemskapsskjema",
+    "successTitle": "Gratulerer!",
+    "successMessage": "Du har blitt medlem av vår familie! Velkommen om bord, og nyt alle de eksklusive fordelene."
   },
   "VolunteersPage": {
     "title": "Bli Frivillig",

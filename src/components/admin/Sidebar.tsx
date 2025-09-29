@@ -52,6 +52,23 @@ export default function Sidebar() {
             Volunteers
           </Link>
         </li>
+        <li>
+          <Link
+            href="/admin/volunteers"
+            className={navLinkClass("/admin/volunteers")}
+          >
+            Volunteers
+          </Link>
+        </li>
+        {/* ✅ NEW GALLERY LINK ✅ */}
+        <li>
+          <Link
+            href="/admin/gallery"
+            className={navLinkClass("/admin/gallery")}
+          >
+            Gallery
+          </Link>
+        </li>
       </ul>
       {/* ========================================= */}
       <hr />

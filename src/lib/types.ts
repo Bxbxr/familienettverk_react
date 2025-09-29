@@ -17,3 +17,9 @@ export interface Activity {
   image_url: string | null;
   registration_link: string | null;
 }
+export interface GalleryImage {
+  id: number;
+  created_at: string;
+  image_url: string;
+  alt_text: string | null;
+}

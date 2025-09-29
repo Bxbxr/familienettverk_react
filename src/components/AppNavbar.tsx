@@ -19,12 +19,11 @@ export default function AppNavbar() {
   return (
     <nav className="navbar navbar-expand-lg fixed-top navbar-solid">
       <div className="container-fluid">
-        {/* === THIS IS THE MODIFIED SECTION === */}
         <Link href="/" className="navbar-brand d-flex align-items-center">
           <Image
             src="/images/logo.png"
             alt="Familienettverk Logo"
-            width={50} // Adjusted size for better balance with text
+            width={50}
             height={50}
             priority
             style={{ objectFit: "contain" }}
@@ -33,7 +32,6 @@ export default function AppNavbar() {
             Familienettverk
           </span>
         </Link>
-        {/* ===================================== */}
 
         <button
           className="navbar-toggler"
@@ -103,6 +101,16 @@ export default function AppNavbar() {
                 onClick={handleNavLinkClick}
               >
                 {messages.Navbar.contact}
+              </Link>
+            </li>
+            {/* ✅ NEW MEMBERSHIP LINK ADDED HERE ✅ */}
+            <li className="nav-item">
+              <Link
+                href="/membership"
+                className={navLinkClass("/membership")}
+                onClick={handleNavLinkClick}
+              >
+                {messages.Navbar.membership}
               </Link>
             </li>
           </ul>
