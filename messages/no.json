@@ -150,6 +150,12 @@
       "styleBoth": "Begge",
       "submitting": "Sender...",
       "submit": "Send søknad"
+    },
+    "ActivityCard": {
+      "ended": "Avsluttet",
+      "upcoming": "Kommende",
+      "ongoing": "Pågående",
+      "locale": "nb-NO"
     }
   }
 }

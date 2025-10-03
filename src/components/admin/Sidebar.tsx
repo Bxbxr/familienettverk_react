@@ -44,14 +44,7 @@ export default function Sidebar() {
             Activities
           </Link>
         </li>
-        <li>
-          <Link
-            href="/admin/volunteers"
-            className={navLinkClass("/admin/volunteers")}
-          >
-            Volunteers
-          </Link>
-        </li>
+        <li></li>
         <li>
           <Link
             href="/admin/volunteers"

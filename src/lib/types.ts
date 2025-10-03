@@ -13,7 +13,8 @@ export interface Activity {
   description_ar: string | null;
 
   // Unchanged fields
-  date: string;
+  start_date: string; // Changed to required
+  end_date: string | null; // Can be optional for single-day events
   image_url: string | null;
   registration_link: string | null;
 }

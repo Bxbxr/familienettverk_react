@@ -20,6 +20,7 @@ export default function EditActivityPage() {
   const rawId = useParams().id as string | undefined;
   const id = Array.isArray(rawId) ? rawId[0] : rawId;
 
+  // ... (useEffect hook for fetching data remains the same)
   useEffect(() => {
     if (!id) return;
     const fetchActivity = async () => {
@@ -31,13 +32,14 @@ export default function EditActivityPage() {
       if (error || !data) {
         notFound();
       } else {
-        setActivity(data);
+        setActivity(data as Activity);
       }
       setLoading(false);
     };
     fetchActivity();
   }, [id]);
 
+  // ... (uploadActivityImage function remains the same)
   const uploadActivityImage = async (): Promise<string | null> => {
     if (!imageFile) return null;
     const fileExt = imageFile.name.split(".").pop();
@@ -78,15 +80,17 @@ export default function EditActivityPage() {
       finalImageUrl = pastedUrl;
     }
 
-    // UPDATED: The updatedActivity object now includes bilingual fields
+    // ✅ UPDATED updatedActivity object
     const updatedActivity = {
-      date: formData.get("date"),
       image_url: finalImageUrl,
       registration_link: formData.get("registration_link"),
       title_no: formData.get("title_no"),
       title_ar: formData.get("title_ar"),
       description_no: formData.get("description_no"),
       description_ar: formData.get("description_ar"),
+      // Use the new date fields
+      start_date: formData.get("start_date"),
+      end_date: formData.get("end_date") || null,
     };
 
     const { error: updateError } = await supabase
@@ -95,7 +99,7 @@ export default function EditActivityPage() {
       .eq("id", id);
 
     if (updateError) {
-      setError("Failed to update activity.");
+      setError("Failed to update activity. " + updateError.message);
       setIsSubmitting(false);
     } else {
       router.push("/admin/activities");
@@ -103,7 +107,8 @@ export default function EditActivityPage() {
     }
   };
 
-  const formatDateTimeLocal = (isoDate: string) => {
+  // ... (formatDateTimeLocal function remains the same)
+  const formatDateTimeLocal = (isoDate: string | null) => {
     if (!isoDate) return "";
     const date = new Date(isoDate);
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
@@ -126,12 +131,13 @@ export default function EditActivityPage() {
       <div className="card border-0 shadow-sm">
         <div className="card-body">
           <form onSubmit={handleSubmit} ref={formRef}>
-            {/* === UPDATED BILINGUAL FIELDS === */}
             <div className="row">
+              {/* ... (bilingual title fields are correct) ... */}
               <div className="col-md-6 mb-3">
+                {" "}
                 <label htmlFor="title_no" className="form-label">
                   Title (Norwegian)
-                </label>
+                </label>{" "}
                 <input
                   type="text"
                   id="title_no"
@@ -139,12 +145,13 @@ export default function EditActivityPage() {
                   className="form-control"
                   defaultValue={activity.title_no || ""}
                   required
-                />
+                />{" "}
               </div>
               <div className="col-md-6 mb-3">
+                {" "}
                 <label htmlFor="title_ar" className="form-label">
                   Title (Arabic)
-                </label>
+                </label>{" "}
                 <input
                   type="text"
                   id="title_ar"
@@ -152,41 +159,62 @@ export default function EditActivityPage() {
                   className="form-control"
                   defaultValue={activity.title_ar || ""}
                   dir="rtl"
-                />
+                />{" "}
               </div>
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="date" className="form-label">
-                Date and Time
-              </label>
-              <input
-                type="datetime-local"
-                id="date"
-                name="date"
-                className="form-control"
-                defaultValue={formatDateTimeLocal(activity.date)}
-                required
-              />
+            {/* ✅ UPDATED DATE FIELDS ✅ */}
+            <div className="row">
+              <div className="col-md-6 mb-3">
+                <label htmlFor="start_date" className="form-label">
+                  Start Date & Time
+                </label>
+                <input
+                  type="datetime-local"
+                  id="start_date"
+                  name="start_date"
+                  className="form-control"
+                  defaultValue={formatDateTimeLocal(activity.start_date)}
+                  required
+                />
+              </div>
+              <div className="col-md-6 mb-3">
+                <label htmlFor="end_date" className="form-label">
+                  End Date & Time (Optional)
+                </label>
+                <input
+                  type="datetime-local"
+                  id="end_date"
+                  name="end_date"
+                  className="form-control"
+                  defaultValue={formatDateTimeLocal(activity.end_date)}
+                />
+                <div className="form-text">
+                  Leave blank for single-day events.
+                </div>
+              </div>
             </div>
 
             <div className="row">
+              {/* ... (bilingual description fields are correct) ... */}
               <div className="col-md-6 mb-3">
+                {" "}
                 <label htmlFor="description_no" className="form-label">
                   Description (Norwegian)
-                </label>
+                </label>{" "}
                 <textarea
                   id="description_no"
                   name="description_no"
                   className="form-control"
                   rows={4}
                   defaultValue={activity.description_no || ""}
-                ></textarea>
+                ></textarea>{" "}
               </div>
               <div className="col-md-6 mb-3">
+                {" "}
                 <label htmlFor="description_ar" className="form-label">
                   Description (Arabic)
-                </label>
+                </label>{" "}
                 <textarea
                   id="description_ar"
                   name="description_ar"
@@ -194,32 +222,30 @@ export default function EditActivityPage() {
                   rows={4}
                   defaultValue={activity.description_ar || ""}
                   dir="rtl"
-                ></textarea>
+                ></textarea>{" "}
               </div>
             </div>
-            {/* =============================== */}
 
+            {/* ... (image and registration fields are correct) ... */}
             {activity.image_url && (
               <div className="mb-3">
-                <label className="form-label">Current Image</label>
+                {" "}
+                <label className="form-label">Current Image</label>{" "}
                 <div>
+                  {" "}
                   <img
                     src={activity.image_url}
-                    alt="Current activity image"
-                    style={{
-                      maxWidth: "200px",
-                      height: "auto",
-                      borderRadius: "0.25rem",
-                    }}
-                  />
-                </div>
+                    alt="Current"
+                    style={{ maxWidth: "200px" }}
+                  />{" "}
+                </div>{" "}
               </div>
             )}
-
             <div className="mb-3">
+              {" "}
               <label htmlFor="image" className="form-label">
                 Upload New Image
-              </label>
+              </label>{" "}
               <input
                 type="file"
                 id="image"
@@ -229,36 +255,34 @@ export default function EditActivityPage() {
                 onChange={(e) => {
                   if (e.target.files) setImageFile(e.target.files[0]);
                 }}
-              />
-              <div className="form-text">
-                Uploading a new image will replace the current one.
-              </div>
+              />{" "}
             </div>
             <div className="text-center my-3 text-muted">OR</div>
             <div className="mb-3">
+              {" "}
               <label htmlFor="image_url" className="form-label">
                 Update Image URL
-              </label>
+              </label>{" "}
               <input
                 type="url"
                 id="image_url"
                 name="image_url"
                 className="form-control"
                 defaultValue={activity.image_url || ""}
-              />
+              />{" "}
             </div>
-
             <div className="mb-3">
+              {" "}
               <label htmlFor="registration_link" className="form-label">
                 Registration Link
-              </label>
+              </label>{" "}
               <input
                 type="url"
                 id="registration_link"
                 name="registration_link"
                 className="form-control"
                 defaultValue={activity.registration_link || ""}
-              />
+              />{" "}
             </div>
 
             {error && <div className="alert alert-danger">{error}</div>}

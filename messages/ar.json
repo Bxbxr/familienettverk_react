@@ -150,6 +150,12 @@
       "styleBoth": "كلاهما",
       "submitting": "جاري الإرسال...",
       "submit": "إرسال الطلب"
+    },
+    "ActivityCard": {
+      "ended": "منتهى",
+      "upcoming": "قادم",
+      "ongoing": "جارٍ الآن",
+      "locale": "ar-EG"
     }
   }
 }

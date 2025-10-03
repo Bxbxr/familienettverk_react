@@ -1,14 +1,34 @@
 // src/app/(admin)/admin/activities/page.tsx
-import { supabase } from "@/lib/supabaseClient";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 import type { Activity } from "@/lib/types";
 import Link from "next/link";
 import { FaEdit, FaTrash, FaPlusCircle } from "react-icons/fa";
 
 async function getAllActivities(): Promise<Activity[]> {
+  // Use server component client for server-side fetching
+  const supabase = createServerComponentClient({ cookies });
+
+  // ✅ THE FIX IS HERE ✅
   const { data, error } = await supabase
     .from("activities")
-    .select("*")
-    .order("date", { ascending: false });
+    // 1. Explicitly select all columns
+    .select(
+      `
+      id,
+      created_at,
+      title_no,
+      title_ar,
+      description_no,
+      description_ar,
+      start_date,
+      end_date,
+      image_url,
+      registration_link
+    `
+    )
+    // 2. Order by the correct 'start_date' column
+    .order("start_date", { ascending: false });
 
   if (error) {
     console.error("Error fetching activities for admin:", error);
@@ -37,9 +57,9 @@ export default async function AdminActivitiesPage() {
               <thead className="thead-light">
                 <tr>
                   <th scope="col" style={{ minWidth: "300px" }}>
-                    Title (Norwegian) {/* I added this clarification */}
+                    Title (Norwegian)
                   </th>
-                  <th scope="col">Date</th>
+                  <th scope="col">Start Date</th>
                   <th scope="col">Status</th>
                   <th scope="col" className="text-end">
                     Actions
@@ -48,26 +68,41 @@ export default async function AdminActivitiesPage() {
               </thead>
               <tbody>
                 {activities.map((activity) => {
-                  const activityDate = new Date(activity.date);
-                  const isPast = activityDate < new Date();
-                  const formattedDate = activityDate.toLocaleDateString(
-                    "en-GB",
-                    { day: "2-digit", month: "long", year: "numeric" }
-                  );
+                  // ✅ NEW STATUS LOGIC COPIED FROM ACTIVITY CARD ✅
+                  const now = new Date();
+                  const startDate = new Date(activity.start_date);
+                  const endDate = activity.end_date
+                    ? new Date(activity.end_date)
+                    : startDate;
+
+                  let status: "upcoming" | "ongoing" | "ended";
+                  let statusClass = "";
+
+                  if (now < startDate) {
+                    status = "upcoming";
+                    statusClass = "text-bg-success";
+                  } else if (now >= startDate && now <= endDate) {
+                    status = "ongoing";
+                    statusClass = "text-bg-primary";
+                  } else {
+                    status = "ended";
+                    statusClass = "text-bg-secondary";
+                  }
+
+                  const formattedDate = startDate.toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  });
 
                   return (
                     <tr key={activity.id}>
-                      {/* ✅ THIS IS THE FIX: Displaying title_no */}
                       <td className="fw-bold">{activity.title_no}</td>
-
                       <td className="text-muted">{formattedDate}</td>
                       <td>
-                        <span
-                          className={`badge rounded-pill text-bg-${
-                            isPast ? "secondary" : "success"
-                          }`}
-                        >
-                          {isPast ? "Ended" : "Upcoming"}
+                        <span className={`badge rounded-pill ${statusClass}`}>
+                          {/* Capitalize first letter for display */}
+                          {status.charAt(0).toUpperCase() + status.slice(1)}
                         </span>
                       </td>
                       <td className="text-end">
