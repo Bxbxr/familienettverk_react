@@ -16,22 +16,29 @@ export default function ActivityDetailPage() {
   const id = Array.isArray(rawId) ? rawId[0] : rawId;
 
   useEffect(() => {
-    // ... (useEffect hook remains the same)
     if (!id) return;
     const getActivity = async () => {
       setLoading(true);
+      // ✅ FIX: Explicitly select the correct columns
       const { data, error } = await supabase
         .from("activities")
-        .select("*")
+        .select(
+          `
+          id, created_at, title_no, title_ar, description_no, description_ar, start_date, end_date, image_url, registration_link
+        `
+        )
         .eq("id", id)
         .single();
+
       if (error || !data) {
+        console.error("Error fetching activity detail:", error);
         notFound();
       } else {
         setActivity(data);
       }
       setLoading(false);
     };
+
     getActivity();
   }, [id]);
 
@@ -42,8 +49,26 @@ export default function ActivityDetailPage() {
     return null;
   }
 
-  // ✅ NEW FALLBACK LOGIC ✅
-  // If the locale is 'ar' AND title_ar exists, use it. Otherwise, use title_no.
+  // ✅ FIX: Use the advanced 3-state status logic
+  const now = new Date();
+  const startDate = new Date(activity.start_date);
+  const endDate = activity.end_date ? new Date(activity.end_date) : startDate;
+
+  let statusText = "";
+  let statusClass = "";
+
+  if (now < startDate) {
+    statusText = messages.ActivityDetailPage.upcoming;
+    statusClass = "bg-success";
+  } else if (now >= startDate && now <= endDate) {
+    statusText = messages.ActivityCard.ongoing; // Use the "ongoing" translation
+    statusClass = "bg-primary";
+  } else {
+    statusText = messages.ActivityDetailPage.ended;
+    statusClass = "bg-danger";
+  }
+
+  // Fallback logic for titles and descriptions
   const title =
     locale === "ar" && activity.title_ar
       ? activity.title_ar
@@ -53,9 +78,8 @@ export default function ActivityDetailPage() {
       ? activity.description_ar
       : activity.description_no;
 
-  const activityDate = new Date(activity.date);
-  const isPast = activityDate < new Date();
-  const formattedDate = activityDate.toLocaleDateString(
+  // ✅ FIX: Format the correct start_date, not the old date
+  const formattedDate = startDate.toLocaleDateString(
     messages.ActivityDetailPage.localeWithOptions,
     {
       weekday: "long",
@@ -83,17 +107,13 @@ export default function ActivityDetailPage() {
               </li>
             </ol>
           </nav>
+
           <h1 className="display-4 mb-3">{title}</h1>
           <div className="d-flex align-items-center mb-4">
-            <span
-              className={`badge me-3 ${isPast ? "bg-danger" : "bg-success"}`}
-            >
-              {isPast
-                ? messages.ActivityDetailPage.ended
-                : messages.ActivityDetailPage.upcoming}
-            </span>
+            <span className={`badge me-3 ${statusClass}`}>{statusText}</span>
             <span className="text-muted">{formattedDate}</span>
           </div>
+
           <img
             src={activity.image_url || "https://picsum.photos/1200/800"}
             alt={title || "Activity Image"}
@@ -102,7 +122,9 @@ export default function ActivityDetailPage() {
           <div className="lead">
             <p style={{ whiteSpace: "pre-line" }}>{description}</p>
           </div>
-          {!isPast && (
+
+          {/* Show register button only if the event has not ended */}
+          {endDate >= now && (
             <div className="mt-5 text-center">
               <Link
                 href={activity.registration_link || "#"}
